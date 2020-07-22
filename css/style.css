@@ -1,0 +1,22 @@
+body {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+table {
+  margin: auto;
+}
+
+td {
+  height: 30px;
+  width: 30px;
+  background-color: grey;
+}
+
+td:hover {
+  cursor: pointer;
+}
