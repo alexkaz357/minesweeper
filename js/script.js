@@ -198,7 +198,7 @@ function handleLife() {
 
 function showLife() {
   for (var i = 0; i < 3; i++) {
-    var hint = document.querySelector(`.life${gLifes}`);
+    var hint = document.querySelector(`.life${i+1}`);
     hint.style.visibility = 'visible';
   }
 }
