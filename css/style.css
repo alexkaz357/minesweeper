@@ -27,6 +27,14 @@ td:hover {
   cursor: pointer;
 }
 
+.shown {
+  background-color: rgb(212, 253, 214);
+}
+
+.shown:hover {
+  background-color: rgb(212, 253, 214);
+}
+
 button {
   color: white;
   background-color: grey;
@@ -39,6 +47,7 @@ button {
   border-radius: 15px;
   display: block;
   margin: 0 auto;
+  transition: background-color .3s;
 }
 
 button:hover {
@@ -71,6 +80,21 @@ button:hover {
   width: 50px;
   height: 50px;
   font-size: 35px;
+}
+
+.life1:hover {
+  cursor: context-menu;
+  animation: heartbeat 1s infinite;
+}
+
+.life2:hover {
+  cursor: context-menu;
+  animation: heartbeat 1s infinite;
+}
+
+.life3:hover {
+  cursor: context-menu;
+  animation: heartbeat 1s infinite;
 }
 
 .hint-bar {
@@ -127,7 +151,7 @@ button:hover {
   font-size: 30px;
   cursor: pointer;
   margin: 0 auto;
-  transition: transform .5s;
+  transition: transform .4s;
 }
 
 .emoji:hover {
@@ -177,5 +201,31 @@ button:hover {
 
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1.25);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.25);
+  }
+
+  80% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
