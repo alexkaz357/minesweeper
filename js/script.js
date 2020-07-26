@@ -53,7 +53,10 @@ function buildBoard(size) {
     board[i] = []
     for (var j = 0; j < size; j++) {
       var cell = {
-        position: {i: i, j: j},
+        position: {
+          i: i,
+          j: j
+        },
         minesAroundCount: 0,
         isShown: false,
         isMine: false,
@@ -71,7 +74,10 @@ function setMines(idxI, idxJ) {
     for (var j = 0; j < gBoard[i].length; j++) {
       var cell = gBoard[i][j];
       if (!cell.isMine) {
-        coord = {i: i, j: j};
+        coord = {
+          i: i,
+          j: j
+        };
         if (coord.i === idxI && coord.j === idxJ) continue;
         empties.push(coord);
       }
@@ -89,10 +95,9 @@ function renderBoard(board) {
     for (var j = 0; j < board[0].length; j++) {
       var currCell = board[i][j];
       if (currCell.isShown || currCell.isMarked) {
-        strHTML += `\t<td class="shown" data-i="${i}" data-j="${j}" onclick="cellClicked(+this.dataset.i, +this.dataset.j)" oncontextmenu="cellMarked(+this.dataset.i, +this.dataset.j)">`;
-      }
-      else {
-        strHTML += `\t<td class="not-shown" data-i="${i}" data-j="${j}" onclick="cellClicked(+this.dataset.i, +this.dataset.j)" oncontextmenu="cellMarked(+this.dataset.i, +this.dataset.j)">`;
+        strHTML += `\t<td id="${i}_${j}" class="shown" data-i="${i}" data-j="${j}" onclick="cellClicked(this, +this.dataset.i, +this.dataset.j)" oncontextmenu="cellMarked(+this.dataset.i, +this.dataset.j)">`;
+      } else {
+        strHTML += `\t<td id="${i}_${j}" class="not-shown" data-i="${i}" data-j="${j}" onclick="cellClicked(this, +this.dataset.i, +this.dataset.j)" oncontextmenu="cellMarked(+this.dataset.i, +this.dataset.j)">`;
       }
       if (currCell.isMarked) strHTML += FLAG;
       if (currCell.isShown && currCell.isMine) strHTML += MINE;
@@ -164,7 +169,7 @@ function setMinesNegsCount(pos) {
   return minesAroundCount;
 }
 
-function cellClicked(i, j) {
+function cellClicked(elCell, i, j) {
   if (!gIsClickable) return;
   if (gIsShowingCells) {
     gIsClickable = false;
@@ -184,7 +189,7 @@ function cellClicked(i, j) {
   if (gBoard[i][j].isMarked) return;
   if (gBoard[i][j].isMarked && gBoard[i][j].isMine) return;
   if (checkIfWon()) return;
-  checkGameOver(i, j);
+  checkGameOver(elCell, i, j);
   if (gIsGameOver) {
     gEmoji.innerText = '🤬';
     return;
@@ -194,7 +199,6 @@ function cellClicked(i, j) {
     for (var idx = 0; idx < gLevel.MINES; idx++) setMines(i, j);
     timer();
     gIsFirstClick = true;
-    renderBoard(gBoard);
   }
   expandShown({
     i,
@@ -202,6 +206,11 @@ function cellClicked(i, j) {
   })
   renderBoard(gBoard);
   checkIfWon();
+
+  if (gBoard[i][j].isMine) {
+    var cellId = elCell.id.split('_');
+    document.getElementById(`${cellId[0]}_${cellId[1]}`).style.backgroundColor = 'red';
+  }
 }
 
 function cellMarked(i, j) {
@@ -232,7 +241,7 @@ function showLife() {
   }
 }
 
-function checkGameOver(i, j) {
+function checkGameOver(elCell, i, j) {
   if (gLifes < 1) return;
   if (gBoard[i][j].isMine) {
     setTimeout(() => {
@@ -253,6 +262,8 @@ function checkGameOver(i, j) {
       }
     }
     renderBoard(gBoard);
+    var cellId = elCell.id.split('_');
+    document.getElementById(`${cellId[0]}_${cellId[1]}`).style.backgroundColor = 'red';
     gIsGameOver = true;
     return;
   }
@@ -284,7 +295,10 @@ function expandShown(pos) {
         var currItem = gBoard[i][j];
         if (currItem.isMarked) continue;
         if (currItem.isShown) continue;
-        expandShown({i,j});
+        expandShown({
+          i,
+          j
+        });
       }
     }
   } else if (setMinesNegsCount(pos)) {
