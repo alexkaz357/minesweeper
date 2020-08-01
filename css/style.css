@@ -4,16 +4,16 @@ body {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 table {
   border: 1px solid black;
-  margin: 15px auto;
+  margin: 10px auto;
 }
 
 td {
@@ -38,14 +38,13 @@ td:hover {
 button {
   color: white;
   background-color: grey;
-  font-size: 15px;
+  font-size: 12px;
   padding: 5px;
   border: none;
   outline: none;
   cursor: pointer;
-  -webkit-border-radius: 15px;
   border-radius: 15px;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   transition: background-color .3s;
 }
@@ -57,28 +56,28 @@ button:hover {
 .life-bar {
   width: 170px;
   height: 50px;
-  margin: 15px auto 10px;
-  display: inline-block;
+  margin: 10px auto 10px;
+  display: block;
 }
 
 .life1 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
 }
 
 .life2 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
 }
 
 .life3 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
 }
 
@@ -100,14 +99,14 @@ button:hover {
 .hint-bar {
   width: 170px;
   height: 50px;
-  margin: 15px auto 10px;
+  margin: 10px auto 10px;
   display: inline-block;
 }
 
 .hint1 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
   transition: transform .5s;
   cursor: pointer;
@@ -115,8 +114,8 @@ button:hover {
 
 .hint2 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
   transition: transform .5s;
   cursor: pointer;
@@ -124,8 +123,8 @@ button:hover {
 
 .hint3 {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   font-size: 35px;
   transition: transform .5s;
   cursor: pointer;
@@ -133,29 +132,81 @@ button:hover {
 
 .hint1:hover {
   transform: scale(1.1);
-  animation: shake 0.3s;
+  animation: shake 0.3s infinite;
 }
 
 .hint2:hover {
   transform: scale(1.1);
-  animation: shake 0.3s;
+  animation: shake 0.3s infinite;
 }
 
 .hint3:hover {
   transform: scale(1.1);
-  animation: shake 0.3s;
+  animation: shake 0.3s infinite;
+}
+
+.safe-click-bar {
+  width: 170px;
+  height: 50px;
+  margin: 10px auto 10px;
+  display: inline-block;
+}
+
+.click1 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  font-size: 35px;
+  transition: transform .5s;
+  cursor: pointer;
+}
+
+.click2 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  font-size: 35px;
+  transition: transform .5s;
+  cursor: pointer;
+}
+
+.click3 {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  font-size: 35px;
+  transition: transform .5s;
+  cursor: pointer;
+}
+
+.click1:hover {
+  animation: zoom 0.7s infinite;
+}
+
+.click2:hover {
+  animation: zoom 0.7s infinite;
+}
+
+.click3:hover {
+  animation: zoom 0.7s infinite;
 }
 
 .emoji {
   width: 50px;
   font-size: 30px;
   cursor: pointer;
-  margin: 0 auto;
+  margin: 0px auto;
   transition: transform .4s;
 }
 
 .emoji:hover {
   transform: scale(1.1);
+}
+
+.txt {
+  font-size: 10px;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @keyframes shake {
@@ -223,6 +274,32 @@ button:hover {
 
   80% {
     transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(0.9);
+  }
+
+  40% {
+    transform: scale(0.8);
+  }
+
+  60% {
+    transform: scale(0.7);
+  }
+
+  80% {
+    transform: scale(0.6);
   }
 
   100% {
